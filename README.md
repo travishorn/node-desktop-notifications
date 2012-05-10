@@ -6,7 +6,8 @@ Send webkit desktop notifications through Node using web sockets.
 ## Installation
 
 1. Download the zip/tar file or clone the git repository
-2. Extract and place contents into your `node_modules/` directory.
+2. Extract and place contents of `lib/` into `node_modules/desktop-notifications/` directory.
+3. `npm install` to install socket.io
 
 ## Dependencies
 The only dependency is [socket.io][1]. You will also have to know the syntax for emitting custom events in socket.io.
@@ -53,3 +54,5 @@ The only dependency is [socket.io][1]. You will also have to know the syntax for
 Please note that the client will have had to previously allow notifications. You can request permission with `window.webkitNotifications.requestPermission()`. The `requestPermission()` function needs to be called from a user action such as clicking a button or link.
 
 A simple demo that utilizes the code above can be found in the `demo/` directory.
+
+[1]: http://socket.io/

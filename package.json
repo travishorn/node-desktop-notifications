@@ -6,6 +6,6 @@
   "dependencies": {
     "socket.io": ">= 0.9.6"
   },
-  "main": "desktop-notifications",
+  "main": "index",
   "engines": { "node": ">= 0.4.1 < 0.7.0" }
 }
