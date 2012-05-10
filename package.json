@@ -2,7 +2,7 @@
   "name": "desktop-notifications",
   "description": "Send webkit desktop notifications through Node using web sockets.",
   "version": "1.0",
-  "author": "Travis Horn <horn.travis@gmail.com>",
+  "author": "Travis Horn",
   "dependencies": {
     "socket.io": ">= 0.9.6"
   },

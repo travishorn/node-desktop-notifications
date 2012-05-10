@@ -1,7 +1,7 @@
 var app = require('http').createServer(handler)
   , io = require('socket.io').listen(app)
   , fs = require('fs')
-  , notifications = require('desktop-notifications');
+  , notifications = require('../desktop-notifications');
 
 app.listen(3000);
 notifications.listen(app);
