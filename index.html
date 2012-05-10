@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>node-desktop-notifications by travishorn</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>node-desktop-notifications</h1>
+        <p>Send webkit desktop notifications through Node using web sockets.</p>
+        <p class="view"><a href="https://github.com/travishorn/node-desktop-notifications">View the Project on GitHub <small>travishorn/node-desktop-notifications</small></a></p>
+        <ul>
+          <li><a href="https://github.com/travishorn/node-desktop-notifications/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/travishorn/node-desktop-notifications/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/travishorn/node-desktop-notifications">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Installation</h2>
+
+<ol>
+<li>Download the zip/tar file or clone the git repository</li>
+<li>Extract and place contents of <code>lib/</code> into <code>node_modules/desktop-notifications/</code> directory.</li>
+<li>
+<code>npm install</code> to install socket.io</li>
+</ol><h2>Dependencies</h2>
+
+<p>The only dependency is <a href="http://socket.io/">socket.io</a>. You will also have to know the syntax for emitting custom events in socket.io.</p>
+
+<h2>Usage</h2>
+
+<h3>Server (app.js)</h3>
+
+<pre><code>var app = require('http').createServer(handler)
+  , io = require('socket.io').listen(app)
+  , fs = require('fs')
+  , notifications = require('../desktop-notifications');
+
+app.listen(3000);
+notifications.listen(app);
+
+function handler (req, res) {
+  if (req.url == '/') {
+    fs.readFile(__dirname + '/index.html', function (err, data) {
+      if (err) {
+        res.writeHead(500);
+        return res.end('Error loading page.');
+      }
+
+      res.writeHead(200);
+      res.end(data);
+    });
+  }
+}
+
+io.sockets.on('connection', function (socket) {
+  notifications.notify({
+      socket: socket
+    , icon : 'img/info.png'
+    , title : 'Notification Title'
+    , content : 'Notification content...'
+    , timeout : 10000
+    , onclick : function () { console.log('Clicked.'); }
+  })
+});
+</code></pre>
+
+<h3>Client (index.html)</h3>
+
+<pre><code>&lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;
+&lt;script src="/desktop-notifications.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h3>Notes</h3>
+
+<p>Please note that the client will have had to previously allow notifications. You can request permission with <code>window.webkitNotifications.requestPermission()</code>. The <code>requestPermission()</code> function needs to be called from a user action such as clicking a button or link.</p>
+
+<p>A simple demo that utilizes the code above can be found in the <code>demo/</code> directory.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/travishorn">travishorn</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
