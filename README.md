@@ -51,7 +51,7 @@ The only dependency is [socket.io][1]. You will also have to know the syntax for
     <script src="/socket.io/socket.io.js"></script>
     <script src="/desktop-notifications.js"></script>
 
-### Notes
+## Notes
 Please note that the client will have had to previously allow notifications. You can request permission with `window.webkitNotifications.requestPermission()`. The `requestPermission()` function needs to be called from a user action such as clicking a button or link.
 
 A simple demo that utilizes the code above can be found in the `demo/` directory.
